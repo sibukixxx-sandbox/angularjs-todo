@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html ng-app = 'App'>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+    <script type="text/javascript" src="controller.js"></script>
+    <script type="text/javascript" src="todo.js"></script>
+    <link rel="stylesheet" href="todo.css">
+</head>
+
+<body ng-controller="AppController">
+
+<input type = "text" ng-model="displayText">
+<input type="button" value="Go" ng-click="display()">
+<h1>{{text}}</h1>
+
+
+<h2>Todo</h2>
+<div ng-controller="TodoController">
+    <span>残り:{{remaining()}}/{{todos.length}}</span>
+    [ <a href="" ng-click="archive()">完了</a> ]
+    <ul class="unstyled">
+        <li ng-repeat="todo in todos">
+            <input type="checkbox" ng-model="todo.done">
+            <span class="done-{{todo.done}}">{{todo.text}}</span>
+        </li>
+    </ul>
+    <form ng-submit="addTodo()">
+        <input type="text" ng-model="todoText"  size="30"
+               placeholder="新しいTODOを追加">
+        <input class="btn-primary" type="submit" value="追加">
+    </form>
+</div>
+
+</body>
+
+</html>
